@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualLog", "VisualLog\VisualLog.csproj", "{25E66D09-06CC-424D-B24F-424CA4FF7B7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExample", "ClientExample\ClientExample.csproj", "{B1786506-EA79-4CAD-B68B-3F98DC708868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualLog.Tests", "VisualLog.Tests\VisualLog.Tests.csproj", "{66C0D3F9-E5C8-4A95-B2AC-975A1C983892}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25E66D09-06CC-424D-B24F-424CA4FF7B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E66D09-06CC-424D-B24F-424CA4FF7B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E66D09-06CC-424D-B24F-424CA4FF7B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E66D09-06CC-424D-B24F-424CA4FF7B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1786506-EA79-4CAD-B68B-3F98DC708868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1786506-EA79-4CAD-B68B-3F98DC708868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1786506-EA79-4CAD-B68B-3F98DC708868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1786506-EA79-4CAD-B68B-3F98DC708868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C0D3F9-E5C8-4A95-B2AC-975A1C983892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C0D3F9-E5C8-4A95-B2AC-975A1C983892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C0D3F9-E5C8-4A95-B2AC-975A1C983892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C0D3F9-E5C8-4A95-B2AC-975A1C983892}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
