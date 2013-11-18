@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
 
+[assembly: XmlConfigurator]
 namespace ClientExample
 {
     internal class Logger
     {
-        private static readonly ILog _log = LogManager.GetLogger("SomeLog");
+       
 
         public Logger()
         {
-            BasicConfigurator.Configure();
-
+            //BasicConfigurator.Configure();
              // Define a static logger variable so that it references the
     // Logger instance named "MyApp".
     
-
-            _log.Info("Entering application.");
+    ILog log = LogManager.GetLogger("SomeLog");
+            log.Info("Entering application.");
     
-            _log.Info("Exiting application.");
+            log.Info("Exiting application.");
         }
     }
 }

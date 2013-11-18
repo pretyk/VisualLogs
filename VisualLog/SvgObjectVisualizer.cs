@@ -84,8 +84,8 @@ namespace VisualLog
         private static void FormatVertexHandler(object sender, FormatVertexEventArgs<string> e)
         {
             e.VertexFormatter.Label = e.Vertex;
-            e.VertexFormatter.Shape = GraphvizVertexShape.TripleOctagon;
-              e.VertexFormatter.Style = GraphvizVertexStyle.Rounded;
+            e.VertexFormatter.Shape = GraphvizVertexShape.MSquare;
+            e.VertexFormatter.Style = GraphvizVertexStyle.Rounded;
         }
 
         #endregion
