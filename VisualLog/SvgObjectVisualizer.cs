@@ -37,8 +37,8 @@ namespace VisualLog
             foreach (var pair in pairs)
             {
                 var pairArray = pair.Split(new[] { "->" }, StringSplitOptions.None);
-                simpleStringGraph.AddEdge(pairArray[0]);
-                simpleStringGraph.AddEdge(pairArray[1]);
+                simpleStringGraph.AddObject(pairArray[0]);
+                simpleStringGraph.AddObject(pairArray[1]);
                 simpleStringGraph.AddRelation(pairArray[0], pairArray[1]);
             }
 
@@ -84,8 +84,8 @@ namespace VisualLog
         private static void FormatVertexHandler(object sender, FormatVertexEventArgs<string> e)
         {
             e.VertexFormatter.Label = e.Vertex;
-            e.VertexFormatter.Shape = GraphvizVertexShape.Rectangle;
-            e.VertexFormatter.Style = GraphvizVertexStyle.Rounded;
+            e.VertexFormatter.Shape = GraphvizVertexShape.TripleOctagon;
+              e.VertexFormatter.Style = GraphvizVertexStyle.Rounded;
         }
 
         #endregion

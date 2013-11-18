@@ -11,7 +11,7 @@ namespace VisualLog.GraphCreators.AttributeBased
         private string _description;
 
         private readonly MemberInfo[] _fieldsAndProperties;
-        private readonly List<ReflectedObject> _innerObjectsReflected = new List<ReflectedObject>();
+        private readonly List<ReflectedObject> _innerReflectedObjects = new List<ReflectedObject>();
 
 
         public ReflectedObject(object obj)
@@ -24,10 +24,14 @@ namespace VisualLog.GraphCreators.AttributeBased
             foreach (var innerObjectMemberInfo in innerObjectsMemberInfo)
             {
                 var objectToReflect = GetObjectFromType(innerObjectMemberInfo, _object);
-                _innerObjectsReflected.Add(new ReflectedObject(objectToReflect));
+                _innerReflectedObjects.Add(new ReflectedObject(objectToReflect));
             }
         }
 
+        public IEnumerable<ReflectedObject> InnerReflectedObjects
+        {
+            get { return _innerReflectedObjects; }
+        }
         public string Description
         {
             get

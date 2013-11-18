@@ -1,19 +1,25 @@
-﻿using VisualLog;
+﻿using System.IO;
+using VisualLog;
 using VisualLog.Attributes;
 
 namespace ClientExample
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-           // Console.WriteLine(SvgObjectVisualizer.GetSvgStringFromArrowGraph("action1->action2|action1->action3|action3->action2|action1->action1"));
+            new Logger();
+
             var someobj = new SomeObject(new InnerObject1 {SomeDescription = "some1"},
                                          new InnerObject2 {OtherDescription = "some2"});
 
             someobj.Name = "hello";
             var visualizer = new SvgObjectVisualizer(someobj);
-            visualizer.Visualize();
+            var res = visualizer.Visualize();
+            StreamWriter sw = new StreamWriter("test.html");
+            sw.Write(res);
+            sw.Flush();
+            sw.Close();
         }
     }
 
