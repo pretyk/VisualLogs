@@ -4,24 +4,21 @@ using QuickGraph;
 using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
 using VisualLog.DotExeHelpers;
-using VisualLog.GraphCreators;
+using VisualLog.GraphCreators.AttributeBased;
 
-namespace VisualLog
+namespace VisualLog.Visualizers
 {
     public class SvgObjectVisualizer : IObjectVisualizer
     {
         private readonly object _objectToVisualize;
-        private readonly IGraphCreator _graphCreator;
+        private readonly AttributeBasedGraphCreator _graphCreator;
 
         #region ctor
 
         public SvgObjectVisualizer(object objectToVisualize) : this(objectToVisualize, new AttributeBasedGraphCreator())
-        {
-            
+        {}
 
-        }
-
-        internal SvgObjectVisualizer(object objectToVisualize, IGraphCreator graphCreator)
+        internal SvgObjectVisualizer(object objectToVisualize, AttributeBasedGraphCreator graphCreator)
         {
             _objectToVisualize = objectToVisualize;
             _graphCreator = graphCreator;
@@ -30,22 +27,7 @@ namespace VisualLog
 
         #region public
 
-        public string GetSvgStringFromArrowGraph(string graph)
-        {
-            var pairs = graph.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-            var simpleStringGraph = new SimpleStringGraph();
-            foreach (var pair in pairs)
-            {
-                var pairArray = pair.Split(new[] { "->" }, StringSplitOptions.None);
-                simpleStringGraph.AddObject(pairArray[0]);
-                simpleStringGraph.AddObject(pairArray[1]);
-                simpleStringGraph.AddRelation(pairArray[0], pairArray[1]);
-            }
-
-            return SvgStringFromStringGraph(simpleStringGraph);
-        }
-
-        private string SvgStringFromStringGraph(IStringGraph stringGraph)
+        private string SvgStringFromStringGraph(AdjacencyGraph<string, TaggedEdge<string, string>> stringGraph)
         {
             var outputFileName = CreateImageFile(stringGraph, GraphvizImageType.Svg, Path.GetTempFileName());
 
@@ -59,10 +41,9 @@ namespace VisualLog
 
         #region private
 
-        private string CreateImageFile(IStringGraph stringGraph, GraphvizImageType imageType, string imageFileName)
+        private string CreateImageFile(AdjacencyGraph<string, TaggedEdge<string, string>> stringGraph, GraphvizImageType imageType, string imageFileName)
         {
-            var graph = stringGraph.ToQuickGraph();
-            var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(graph) { ImageType = imageType };
+            var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(stringGraph) { ImageType = imageType };
 
             graphviz.FormatVertex += FormatVertexHandler;
 

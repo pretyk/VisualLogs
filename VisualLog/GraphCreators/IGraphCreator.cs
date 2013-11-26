@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace VisualLog.GraphCreators
 {
-    internal interface IGraphCreator
+    internal interface IGraphCreator<T>
     {
-        IStringGraph Create(object obj);
+        T Create(object obj);
     }
 }

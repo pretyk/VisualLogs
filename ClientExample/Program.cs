@@ -8,18 +8,23 @@ namespace ClientExample
     {
         private static void Main(string[] args)
         {
-            new Logger();
-
+            
+            Logger.Info("Some info log");
             var someobj = new SomeObject(new InnerObject1 {SomeDescription = "some1"},
                                          new InnerObject2 {OtherDescription = "some2"});
-
+            Logger.Debug("Object Created");
             someobj.Name = "hello";
-            var visualizer = new SvgObjectVisualizer(someobj);
-            var res = visualizer.Visualize();
-            StreamWriter sw = new StreamWriter("test.html");
-            sw.Write(res);
-            sw.Flush();
-            sw.Close();
+
+
+
+            Logger.VisualizeObject(someobj);
+
+            Logger.Debug("Exiting.....");
+
+          //  StreamWriter sw = new StreamWriter("test.html");
+           // sw.Write(res);
+            //sw.Flush();
+            //sw.Close();
         }
     }
 
