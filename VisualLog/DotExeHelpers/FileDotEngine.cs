@@ -43,7 +43,6 @@ namespace VisualLog.DotExeHelpers
                 process.StartInfo.UseShellExecute = false;
                 process.Start();
 
-                process.WaitForExit(1000);
                 return process.StandardOutput.ReadToEnd() + process.StandardError.ReadToEnd();
             }
         }

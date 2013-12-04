@@ -5,45 +5,18 @@ using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
 using VisualLog.DotExeHelpers;
 using VisualLog.GraphCreators.AttributeBased;
+using VisualLog.Graphs;
 
 namespace VisualLog.Visualizers
 {
-    public class SvgObjectVisualizer : IObjectVisualizer
+    internal class SvgVisualizer : VisualizerBase<AttributeBasedGraphCreator>
     {
-        private readonly object _objectToVisualize;
-        private readonly AttributeBasedGraphCreator _graphCreator;
-
-        #region ctor
-
-        public SvgObjectVisualizer(object objectToVisualize) : this(objectToVisualize, new AttributeBasedGraphCreator())
-        {}
-
-        internal SvgObjectVisualizer(object objectToVisualize, AttributeBasedGraphCreator graphCreator)
-        {
-            _objectToVisualize = objectToVisualize;
-            _graphCreator = graphCreator;
-        }
-        #endregion
-
-        #region public
-
-        private string SvgStringFromStringGraph(AdjacencyGraph<string, TaggedEdge<string, string>> stringGraph)
-        {
-            var outputFileName = CreateImageFile(stringGraph, GraphvizImageType.Svg, Path.GetTempFileName());
-
-            using (var stream = new StreamReader(outputFileName))
-            {
-                return stream.ReadToEnd();
-            }
-        }
-
-        #endregion
-
         #region private
 
-        private string CreateImageFile(AdjacencyGraph<string, TaggedEdge<string, string>> stringGraph, GraphvizImageType imageType, string imageFileName)
+        private string CreateImageFile(object o, GraphvizImageType imageType, string imageFileName)
         {
-            var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(stringGraph) { ImageType = imageType };
+           var graph = GraphCreator.Create<StringGraph>(o);
+           var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(graph.ToQuickGraph()) { ImageType = imageType };
 
             graphviz.FormatVertex += FormatVertexHandler;
 
@@ -55,8 +28,6 @@ namespace VisualLog.Visualizers
             return outputfile;
         }
 
-
-        
 
         #endregion
 
@@ -71,11 +42,15 @@ namespace VisualLog.Visualizers
 
         #endregion
 
-        public string Visualize()
+        public override string Visualize(object o)
         {
+            var outputFileName = CreateImageFile(o, GraphvizImageType.Svg, Path.GetTempFileName());
 
-            var graph = _graphCreator.Create(_objectToVisualize);
-            return SvgStringFromStringGraph(graph);
+            using (var stream = new StreamReader(outputFileName))
+            {
+                return stream.ReadToEnd();
+            }
+
         }
     }
 

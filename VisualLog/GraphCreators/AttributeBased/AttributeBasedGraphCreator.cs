@@ -1,37 +1,30 @@
 ﻿using System.Collections.Generic;
 using QuickGraph;
+using VisualLog.Graphs;
 
 namespace VisualLog.GraphCreators.AttributeBased
 {
-    internal class AttributeBasedGraphCreator : IGraphCreator<AdjacencyGraph<string, TaggedEdge<string, string>>>
+    internal class AttributeBasedGraphCreator : IGraphCreator
     {
-        private AdjacencyGraph<string, TaggedEdge<string, string>> _stringGraph;
 
-        public AttributeBasedGraphCreator(AdjacencyGraph<string, TaggedEdge<string, string>> stringGraph)
-        {
-            _stringGraph = stringGraph;
-        }
-        public AttributeBasedGraphCreator() : this(new AdjacencyGraph<string, TaggedEdge<string, string>>())
-        {
-
-        }
-        public AdjacencyGraph<string, TaggedEdge<string, string>> Create(object obj)
+        public T Create<T>(object obj) where T: IStringGraph, new()
         {
             var reflectedObject = new ReflectedObject(obj);
 
             var queue = new Queue<ReflectedObject>();
+            var stringGraph = new T();
 
             queue.Enqueue(reflectedObject);
-            var visitedList = new List<ReflectedObject>() { reflectedObject };
-            _stringGraph.AddVertex(reflectedObject.Description);
+            var visitedList = new List<ReflectedObject> { reflectedObject };
+            stringGraph.AddVertex(reflectedObject.Description);
             while (queue.Count > 0)
             {
                 var curRoot = queue.Dequeue();
 
                 foreach (var reflectedChild in curRoot.InnerReflectedObjects)
                 {
-                    _stringGraph.AddVertex(reflectedChild.Description);
-                    _stringGraph.AddEdge(new TaggedEdge<string, string>(curRoot.Description, reflectedChild.Description, string.Empty));
+                    stringGraph.AddVertex(reflectedChild.Description);
+                    stringGraph.AddEdge(curRoot.Description, reflectedChild.Description);
                     if (!visitedList.Contains(reflectedChild))
                     {
                         queue.Enqueue(reflectedChild);
@@ -39,7 +32,7 @@ namespace VisualLog.GraphCreators.AttributeBased
                     }
                 }
             }
-            return _stringGraph;
+            return stringGraph;
         }
     }
 }

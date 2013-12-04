@@ -15,8 +15,6 @@ namespace ClientExample
             Logger.Debug("Object Created");
             someobj.Name = "hello";
 
-
-
             Logger.VisualizeObject(someobj);
 
             Logger.Debug("Exiting.....");

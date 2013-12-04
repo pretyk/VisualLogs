@@ -1,9 +1,9 @@
-﻿
+﻿using VisualLog.Graphs;
 
 namespace VisualLog.GraphCreators
 {
-    internal interface IGraphCreator<T>
+    internal interface IGraphCreator 
     {
-        T Create(object obj);
+        T Create<T>(object obj) where T : IStringGraph, new();
     }
 }

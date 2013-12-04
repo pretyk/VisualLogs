@@ -56,10 +56,14 @@
     <Compile Include="GraphCreators\AttributeBased\AttributeBasedGraphCreator.cs" />
     <Compile Include="GraphCreators\AttributeBased\ReflectedObject.cs" />
     <Compile Include="GraphCreators\IGraphCreator.cs" />
+    <Compile Include="Graphs\IStringGraph.cs" />
+    <Compile Include="Graphs\StringGraph.cs" />
+    <Compile Include="VisualizerFactory.cs" />
     <Compile Include="Visualizers\SvgVisualizer.cs" />
-    <Compile Include="IObjectVisualizer.cs" />
+    <Compile Include="Visualizers\IVisualizer.cs" />
     <Compile Include="DotExeHelpers\FileDotEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visualizers\VisualizerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VisualLog;
 using VisualLog.Visualizers;
 using log4net;
 using log4net.Config;
@@ -36,10 +37,9 @@ namespace ClientExample
 
         public static void VisualizeObject(object o)
         {
-            var visualizer = new SvgObjectVisualizer(o);
+            var visualizer = VisualizerFactory.GetVisualizer(VisualizerType.Svg);
 
-
-            var objVisualization = visualizer.Visualize();
+            var objVisualization = visualizer.Visualize(o);
 
             _log.Debug(objVisualization);
         }
