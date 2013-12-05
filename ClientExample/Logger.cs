@@ -7,6 +7,7 @@ using VisualLog;
 using VisualLog.Visualizers;
 using log4net;
 using log4net.Config;
+using log4net.Core;
 
 [assembly: XmlConfigurator]
 namespace ClientExample
@@ -37,11 +38,14 @@ namespace ClientExample
 
         public static void VisualizeObject(object o)
         {
-            var visualizer = VisualizerFactory.GetVisualizer(VisualizerType.Svg);
+            if (_log.Logger.IsEnabledFor(Level.Verbose))
+            {
+                var visualizer = VisualizerFactory.GetVisualizer(VisualizerType.Svg);
 
-            var objVisualization = visualizer.Visualize(o);
+                var objVisualization = visualizer.Visualize(o);
 
-            _log.Debug(objVisualization);
+                _log.Debug(objVisualization);
+            }
         }
     }
 }

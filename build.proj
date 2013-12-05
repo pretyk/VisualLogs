@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    ToolsVersion="4.0"
+    DefaultTargets="RunAll">
+
+  <PropertyGroup>
+    <SolutionDir>C:\Users\retyk\Documents\Visual Studio 2012\Projects\VisualLog</SolutionDir>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+
+  <Target Name="RunAll">
+    <CallTarget Targets="Build"/>
+    <CallTarget Targets="Tests"/>
+  </Target>
+
+ 
+
+  <ItemGroup>
+    <ProjectToBuild Include="VisualLog.sln">
+      <Properties>$(BuildConfiguration)</Properties>
+    </ProjectToBuild>
+  </ItemGroup>
+
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)"/>
+  </Target>
+
+  <Target Name ="Clean">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Clean"/>
+  </Target>
+  
+  <Target Name="Tests">
+    <Message Text="------------------------------------------------------------- " />
+    <Message Text="                           Tests                             " />
+    <Message Text="------------------------------------------------------------- " />
+    <NUnit Assemblies=".\bin\VisualLog.Tests.dll"
+           
+           ToolPath="C:\Program Files (x86)\NUnit 2.6.3\bin"
+            ContinueOnError="True"
+            OutputXMLFile="result.xml"
+            Force32Bit="True"
+            >
+    </NUnit>
+    <Message Text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" />
+  </Target>
+</Project>

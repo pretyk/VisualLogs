@@ -32,6 +32,7 @@ namespace VisualLog.GraphCreators.AttributeBased
         {
             get { return _innerReflectedObjects; }
         }
+
         public string Description
         {
             get
@@ -44,7 +45,7 @@ namespace VisualLog.GraphCreators.AttributeBased
 
 
                     object description = GetObjectFromType(descriptionMember, _object);
-                    _description = description.ToString();
+                    _description = description == null ? "<null>" : description.ToString();
 
                 }
 
