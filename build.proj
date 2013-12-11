@@ -28,16 +28,20 @@
   </ItemGroup>
 
   <Target Name="Build">
-    <MSBuild Projects="@(ProjectToBuild)"/>
+    <MSBuild Projects="@(ProjectToBuild)"  Targets="Build"/>
   </Target>
-
+  
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(ProjectToBuild)"  Targets="Rebuild"/>
+  </Target>
+  
   <Target Name ="Clean">
     <MSBuild Projects="@(ProjectToBuild)" Targets="Clean"/>
   </Target>
   
   <Target Name="Tests">
     <Message Text="------------------------------------------------------------- " />
-    <Message Text="                           Tests                             " />
+    <Message Text="T E S T S" />
     <Message Text="------------------------------------------------------------- " />
     <NUnit Assemblies=".\bin\VisualLog.Tests.dll"
            

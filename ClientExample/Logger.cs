@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VisualLog;
+using VisualLog.Factories;
 using VisualLog.Visualizers;
 using log4net;
 using log4net.Config;
@@ -40,7 +41,7 @@ namespace ClientExample
         {
             if (_log.Logger.IsEnabledFor(Level.Verbose))
             {
-                var visualizer = VisualizerFactory.GetVisualizer(VisualizerType.Svg);
+                var visualizer = Visualizer.GetSvg();
 
                 var objVisualization = visualizer.Visualize(o);
 

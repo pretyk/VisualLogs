@@ -9,6 +9,8 @@ namespace VisualLog.Tests
         [VisualLog]
         private InnerObject2 _innerObject2;
 
+        private InnerObject1 _innerObject3NoAttr;
+
         public TestObject(InnerObject1 innerObject1, InnerObject2 innerObject2)
         {
             InnerObject2 = innerObject2;
@@ -28,6 +30,12 @@ namespace VisualLog.Tests
         {
             get { return _innerObject2; }
             set { _innerObject2 = value; }
+        }
+
+        public InnerObject1 InnerObject3NoAttr
+        {
+            get { return _innerObject3NoAttr; }
+            set { _innerObject3NoAttr = value; }
         }
     }
 

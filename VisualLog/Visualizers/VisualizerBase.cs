@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VisualLog.Factories;
+using VisualLog.GraphCreators;
+using VisualLog.GraphCreators.AttributeBased;
 
 namespace VisualLog.Visualizers
 {
-    public abstract class VisualizerBase<T> :  IVisualizer where T : new()
+    internal abstract class VisualizerBase :  IVisualizer
     {
-        private readonly T _graphCreator;
+        private readonly IGraphCreator _graphCreator;
 
-        protected T GraphCreator
+        protected IGraphCreator GraphCreator
         {
             get { return _graphCreator; }
         }
+
         public abstract string Visualize(object o);
 
-        protected VisualizerBase()
+        protected VisualizerBase(IFactoryProvider factoryProvider)
         {
-            _graphCreator = new T();
+            _graphCreator = factoryProvider.CreateGraphCreator();
         }
     }
 }

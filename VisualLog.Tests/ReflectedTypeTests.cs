@@ -22,7 +22,7 @@ namespace VisualLog.Tests
 
             var reflectedObject = new ReflectedObject(o);
             Assert.IsNotNull(reflectedObject);
-            Assert.Contains(reflectedObject.InnerReflectedObjects, new[] { new ReflectedObject(o.InnerObject1), new ReflectedObject(o.InnerObject2) });
+            Assert.AreEqual(new[] { new ReflectedObject(o.InnerObject1), new ReflectedObject(o.InnerObject2) }, reflectedObject.InnerObjectsDescriptors.ToArray());
             
             //var rt = new ReflectedObject(obj);
         }

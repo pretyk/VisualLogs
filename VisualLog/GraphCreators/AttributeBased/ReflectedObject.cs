@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using VisualLog.Attributes;
 
 namespace VisualLog.GraphCreators.AttributeBased
 {
-    internal class ReflectedObject
+    internal class ReflectedObject : IObjectDescriptor, IEquatable<ReflectedObject>
     {
+        public override int GetHashCode()
+        {
+            return (_object != null ? _object.GetHashCode() : 0);
+        }
+
         private readonly object _object;
         private string _description;
 
@@ -28,7 +34,7 @@ namespace VisualLog.GraphCreators.AttributeBased
             }
         }
 
-        public IEnumerable<ReflectedObject> InnerReflectedObjects
+        public IEnumerable<IObjectDescriptor> InnerObjectsDescriptors
         {
             get { return _innerReflectedObjects; }
         }
@@ -71,6 +77,21 @@ namespace VisualLog.GraphCreators.AttributeBased
                 }
             }
             return reflectedObject;
+        }
+
+        public bool Equals(ReflectedObject other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(_object, other._object);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((ReflectedObject) obj);
         }
     }
 }

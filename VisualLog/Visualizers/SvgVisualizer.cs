@@ -4,13 +4,21 @@ using QuickGraph;
 using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
 using VisualLog.DotExeHelpers;
-using VisualLog.GraphCreators.AttributeBased;
+using VisualLog.Factories;
 using VisualLog.Graphs;
 
 namespace VisualLog.Visualizers
 {
-    internal class SvgVisualizer : VisualizerBase<AttributeBasedGraphCreator>
+    internal class SvgVisualizer : VisualizerBase
     {
+
+
+        public SvgVisualizer(IFactoryProvider factoryProvider)
+            : base(factoryProvider)
+        {
+
+        }
+
         #region private
 
         private string CreateImageFile(object o, GraphvizImageType imageType, string imageFileName)
