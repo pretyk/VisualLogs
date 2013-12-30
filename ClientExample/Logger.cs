@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualLog;
-using VisualLog.Factories;
-using VisualLog.Visualizers;
+﻿using VisualLog;
 using log4net;
 using log4net.Config;
 using log4net.Core;
@@ -15,7 +8,7 @@ namespace ClientExample
 {
     internal static class Logger
     {
-        private static ILog _log = LogManager.GetLogger("DemoLog");
+        private static readonly ILog _log = LogManager.GetLogger("DemoLog");
 
         public static void Info(string message)
         {
@@ -41,7 +34,7 @@ namespace ClientExample
         {
             if (_log.Logger.IsEnabledFor(Level.Verbose))
             {
-                var visualizer = Visualizer.GetSvg();
+                var visualizer = Visualizer.Svg;
 
                 var objVisualization = visualizer.Visualize(o);
 

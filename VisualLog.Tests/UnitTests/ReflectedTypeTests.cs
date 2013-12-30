@@ -1,17 +1,10 @@
 ﻿// ReSharper disable InconsistentNaming
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
 using NUnit.Framework;
-using VisualLog.Attributes;
 using VisualLog.GraphCreators.AttributeBased;
 
-namespace VisualLog.Tests
+namespace VisualLog.Tests.UnitTests
 {
     class ReflectedTypeTests
     {

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualLog.Factories;
+﻿using VisualLog.Factories;
 using VisualLog.GraphCreators;
-using VisualLog.GraphCreators.AttributeBased;
 
 namespace VisualLog.Visualizers
 {

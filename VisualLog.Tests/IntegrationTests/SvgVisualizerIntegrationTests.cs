@@ -2,7 +2,7 @@
 using VisualLog.Factories;
 using VisualLog.Visualizers;
 
-namespace VisualLog.Tests
+namespace VisualLog.Tests.IntegrationTests
 {
 
     class SvgVisualizerIntegrationTests

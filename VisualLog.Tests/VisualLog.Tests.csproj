@@ -50,9 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReflectedTypeTests.cs" />
+    <Compile Include="UnitTests\ReflectedTypeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SvgVisualizerIntegrationTests.cs" />
+    <Compile Include="IntegrationTests\SvgVisualizerIntegrationTests.cs" />
     <Compile Include="TestObject.cs" />
   </ItemGroup>
   <ItemGroup>

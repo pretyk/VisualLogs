@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VisualLog.Factories;
 using VisualLog.Graphs;
 
 namespace VisualLog.GraphCreators.AttributeBased
@@ -38,19 +39,6 @@ namespace VisualLog.GraphCreators.AttributeBased
                 }
             }
             return stringGraph;
-        }
-    }
-
-    internal interface IObjectDescriptorFactory
-    {
-        IObjectDescriptor Create(object o);
-    }
-
-    internal class ReflectedObjectFactory : IObjectDescriptorFactory
-    {
-        public IObjectDescriptor Create(object o)
-        {
-            return new ReflectedObject(o);
         }
     }
 }
