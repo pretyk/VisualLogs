@@ -5,18 +5,17 @@ namespace VisualLog.Visualizers
 {
     internal abstract class VisualizerBase :  IVisualizer
     {
-        private readonly IGraphCreator _graphCreator;
-
-        protected IGraphCreator GraphCreator
+        protected IFactoryProvider FactoryProvider
         {
-            get { return _graphCreator; }
+            private set; 
+            get;
         }
 
         public abstract string Visualize(object o);
 
         protected VisualizerBase(IFactoryProvider factoryProvider)
         {
-            _graphCreator = factoryProvider.CreateGraphCreator();
+            FactoryProvider = factoryProvider;
         }
     }
 }

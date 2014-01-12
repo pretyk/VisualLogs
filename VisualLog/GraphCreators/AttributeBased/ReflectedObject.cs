@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,20 +18,41 @@ namespace VisualLog.GraphCreators.AttributeBased
         private string _description;
 
         private readonly MemberInfo[] _fieldsAndProperties;
-        private readonly List<ReflectedObject> _innerReflectedObjects = new List<ReflectedObject>();
+        private readonly List<IObjectDescriptor> _innerReflectedObjects = new List<IObjectDescriptor>();
 
 
         public ReflectedObject(object obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentException("Object cannot be null");
+            }
             _object = obj;
 
             var type = obj.GetType();
-            _fieldsAndProperties = type.GetMembers(BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            _fieldsAndProperties = type.GetMembers(BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
             var innerObjectsMemberInfo = _fieldsAndProperties.Where(prop => prop.IsDefined(typeof(VisualLogAttribute), false));
             foreach (var innerObjectMemberInfo in innerObjectsMemberInfo)
             {
                 var objectToReflect = GetObjectFromType(innerObjectMemberInfo, _object);
-                _innerReflectedObjects.Add(new ReflectedObject(objectToReflect));
+                if (objectToReflect == null)
+                {
+                    _innerReflectedObjects.Add(new NullReflectedObject());                    
+                }
+                else
+                {
+                    if (objectToReflect is IEnumerable)
+                    {
+                        foreach (var objectItem in (IEnumerable)objectToReflect)
+                        {
+                            _innerReflectedObjects.Add(new ReflectedObject(objectItem));
+                        }
+                    }
+                    else
+                    {
+                        _innerReflectedObjects.Add(new ReflectedObject(objectToReflect));
+                    }
+                }
             }
         }
 
@@ -51,7 +73,7 @@ namespace VisualLog.GraphCreators.AttributeBased
 
 
                     object description = GetObjectFromType(descriptionMember, _object);
-                    _description = description == null ? "<null>" : description.ToString();
+                    _description = description == null ? _object.ToString() : description.ToString();
 
                 }
 
@@ -62,21 +84,21 @@ namespace VisualLog.GraphCreators.AttributeBased
         private static object GetObjectFromType(MemberInfo memberInfo, object objectToReflect)
         {
             var member = memberInfo as PropertyInfo;
-            object reflectedObject = null;
+            object memberValue = null;
 
             if (member != null)
             {
-                reflectedObject = member.GetGetMethod().Invoke(objectToReflect, null);
+                memberValue = member.GetGetMethod().Invoke(objectToReflect, null);
             }
             else
             {
                 var info = memberInfo as FieldInfo;
                 if (info != null)
                 {
-                    reflectedObject = info.GetValue(objectToReflect);
+                    memberValue = info.GetValue(objectToReflect);
                 }
             }
-            return reflectedObject;
+            return memberValue;
         }
 
         public bool Equals(ReflectedObject other)

@@ -2,7 +2,17 @@
 
 namespace VisualLog.Tests
 {
-    public class TestObject
+    public class TestObjectWithNoAttributedInners
+    {
+        public DummyObject DummyObject { get; set; }
+    }
+
+    public class DummyObject
+    {
+        
+    }
+
+    public class TestObjectWith2AttributedInners
     {
         [VisualLog]
         private InnerObject1 _innerObject1;
@@ -11,7 +21,7 @@ namespace VisualLog.Tests
 
         private InnerObject1 _innerObject3NoAttr;
 
-        public TestObject(InnerObject1 innerObject1, InnerObject2 innerObject2)
+        public TestObjectWith2AttributedInners(InnerObject1 innerObject1, InnerObject2 innerObject2)
         {
             InnerObject2 = innerObject2;
             InnerObject1 = innerObject1;

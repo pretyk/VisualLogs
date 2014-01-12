@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VisualLog.Attributes
 {
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class VisualLogDescriptionAttribute : Attribute
     {
        

@@ -2,7 +2,7 @@
 
 namespace VisualLog.Factories
 {
-    internal interface IObjectDescriptorFactory
+    public interface IObjectDescriptorFactory
     {
         IObjectDescriptor Create(object o);
     }

@@ -5,7 +5,6 @@ using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
 using VisualLog.DotExeHelpers;
 using VisualLog.Factories;
-using VisualLog.Graphs;
 
 namespace VisualLog.Visualizers
 {
@@ -23,8 +22,12 @@ namespace VisualLog.Visualizers
 
         private string CreateImageFile(object o, GraphvizImageType imageType, string imageFileName)
         {
-           var graph = GraphCreator.Create<StringGraph>(o);
-           var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(graph.ToQuickGraph()) { ImageType = imageType };
+            var graph = FactoryProvider.CreateStringGraph();
+            FactoryProvider.CreateGraphCreator().Create(o, graph);
+            var graphviz = new GraphvizAlgorithm<string, TaggedEdge<string, string>>(graph.ToQuickGraph())
+                {
+                    ImageType = imageType
+                };
 
             graphviz.FormatVertex += FormatVertexHandler;
 

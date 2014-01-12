@@ -2,8 +2,8 @@
 
 namespace VisualLog.GraphCreators
 {
-    internal interface IGraphCreator 
+    public interface IGraphCreator 
     {
-        T Create<T>(object obj) where T : IStringGraph, new();
+        void Create(object obj, IStringGraph stringGraph);
     }
 }

@@ -61,9 +61,12 @@
     <Compile Include="Factories\IObjectDescriptorFactory.cs" />
     <Compile Include="Factories\VisualizerFactoryProvider.cs" />
     <Compile Include="GraphCreators\AttributeBased\AttributeBasedGraphCreator.cs" />
+    <Compile Include="GraphCreators\AttributeBased\NullReflectedObject.cs" />
     <Compile Include="GraphCreators\AttributeBased\ReflectedObject.cs" />
     <Compile Include="GraphCreators\IGraphCreator.cs" />
     <Compile Include="GraphCreators\IObjectDescriptor.cs" />
+    <Compile Include="Graphs\IGraph.cs" />
+    <Compile Include="Graphs\IQuickGraphGenerator.cs" />
     <Compile Include="Graphs\IStringGraph.cs" />
     <Compile Include="Graphs\StringGraph.cs" />
     <Compile Include="Visualizer.cs" />

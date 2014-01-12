@@ -1,8 +1,7 @@
 ﻿namespace VisualLog.Graphs
 {
-    internal interface IStringGraph
+    public interface IStringGraph : IGraph, IQuickGraphGenerator
     {
-        void AddEdge(string source, string target);
-        void AddVertex(string description);
+       
     }
 }

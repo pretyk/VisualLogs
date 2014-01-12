@@ -1,11 +1,12 @@
 ﻿using VisualLog.GraphCreators;
-using VisualLog.GraphCreators.AttributeBased;
+using VisualLog.Graphs;
 
 namespace VisualLog.Factories
 {
-    internal interface IFactoryProvider
+    public interface IFactoryProvider
     {
         IObjectDescriptorFactory GetObjectDescriptorFactory();
         IGraphCreator CreateGraphCreator();
+        IStringGraph CreateStringGraph();
     }
 }

@@ -37,7 +37,6 @@ namespace ClientExample
                 var visualizer = Visualizer.Svg;
 
                 var objVisualization = visualizer.Visualize(o);
-
                 _log.Debug(objVisualization);
             }
         }

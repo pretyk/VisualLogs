@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using VisualLog;
 using VisualLog.Attributes;
 
@@ -10,13 +11,20 @@ namespace ClientExample
         {
             
             Logger.Info("Some info log");
-            var someobj = new SomeObject(new InnerObject1 {SomeDescription = "some1"},
-                                         new InnerObject2 {OtherDescription = "some2"});
-            Logger.Debug("Object Created");
-            someobj.Name = "hello";
 
-            Logger.VisualizeObject(someobj);
 
+            Logger.Info("Creating a store");
+            var store = new Store();
+            Logger.Debug("Adding orders");
+            store.AddOrder(new Order(new Customer("Walter"),new Book("Harry Potter"),2));
+            store.AddOrder(new Order(new Customer("Gustavo"),new Book("Romeo and Juliet"),3));
+            Logger.VisualizeObject(store);
+            Logger.Debug("Adding more orders");
+            store.AddOrder(new Order(new Customer("Mike"), new Phone("LG"), 4));
+            store.AddOrder(new Order(new Customer("Jesse"),new Phone("Samsung"),5));
+            store.AddOrder(new Order(new Customer("Soul"),new Book("Don Quixote"),6));
+            Logger.Debug("Finishing adding orders");
+            Logger.VisualizeObject(store);
             Logger.Debug("Exiting.....");
 
           //  StreamWriter sw = new StreamWriter("test.html");
@@ -25,35 +33,93 @@ namespace ClientExample
             //sw.Close();
         }
     }
-
-
-    public class SomeObject
+    public class Store
     {
+        private List<Customer> _customers = new List<Customer>();
         [VisualLog]
-        private InnerObject1 _innerObject1;
-        [VisualLog]
-        private InnerObject2 _innerObject2;
+        private List<Order> _orders = new List<Order>();
+        private List<Item> _items = new List<Item>();
 
-        public SomeObject(InnerObject1 innerObject1, InnerObject2 innerObject2)
+        public void AddCustomer(Customer customer)
         {
-            _innerObject2 = innerObject2;
-            _innerObject1 = innerObject1;
+            if (!_customers.Contains(customer))
+            {
+                _customers.Add(customer);
+            }
         }
 
-        [VisualLogDescription]
-        public string Name ;//{ get; set; }
+        public void AddItem(Item item)
+        {
+            if (!_items.Contains(item))
+            {
+                _items.Add(item);
+            }
+        }
+
+        public void AddOrder(Order order)
+        {
+            _orders.Add(order);
+            AddCustomer(order.Customer);
+            AddItem(order.Item);
+        }
     }
 
-    public class InnerObject1
+    public class Customer
     {
+        public Customer(string name)
+        {
+            Name = name;
+        }
         [VisualLogDescription]
-        public string SomeDescription { get; set; }
+        public string Name { get; private set; }
     }
 
-    public class InnerObject2
+    public class Order
     {
+        public Order(Customer customer, Item item, int quantity)
+        {
+            Customer = customer;
+            Item = item;
+            Quantity = quantity;
+        }
+
+        [VisualLog]
+        public Customer Customer { get; private set; }
+        [VisualLog]
+        public Item Item { get; private set; }
+        [VisualLog]
+        public int Quantity { get; set; }
+
         [VisualLogDescription]
-        public string OtherDescription { get; set; }
-        
+        public override string ToString()
+        {
+            return string.Format("Order: {0}  {1}", Quantity, Item.Name);
+        }
+    }
+
+    public abstract class Item
+    {
+        protected Item(string name)
+        {
+            Name = name;
+        }
+        [VisualLogDescription]
+        public string Name{get ;set ;}
+    }
+
+    public class Book : Item
+    {
+        public Book(string name) : base(name)
+        {
+            
+        }
+    }
+
+    public class Phone : Item
+    {
+        public Phone(string name) : base(name)
+        {
+            
+        }
     }
 }

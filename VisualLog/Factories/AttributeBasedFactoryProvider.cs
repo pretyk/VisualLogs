@@ -1,5 +1,6 @@
 ﻿using VisualLog.GraphCreators;
 using VisualLog.GraphCreators.AttributeBased;
+using VisualLog.Graphs;
 
 namespace VisualLog.Factories
 {
@@ -13,6 +14,11 @@ namespace VisualLog.Factories
         public IGraphCreator CreateGraphCreator()
         {
             return new AttributeBasedGraphCreator(new ReflectedObjectFactory());
+        }
+
+        public IStringGraph CreateStringGraph()
+        {
+            return new StringGraph();
         }
     }
 }

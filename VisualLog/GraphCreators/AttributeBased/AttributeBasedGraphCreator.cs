@@ -13,12 +13,11 @@ namespace VisualLog.GraphCreators.AttributeBased
             _objectDescriptorFactory = objectDescriptorFactory;
         }
 
-        public T Create<T>(object obj) where T: IStringGraph, new()
+        public void Create(object obj, IStringGraph stringGraph)
         {
             var reflectedObject = _objectDescriptorFactory.Create(obj);
 
             var queue = new Queue<IObjectDescriptor>();
-            var stringGraph = new T();
 
             queue.Enqueue(reflectedObject);
             var visitedList = new List<IObjectDescriptor> { reflectedObject };
@@ -37,8 +36,7 @@ namespace VisualLog.GraphCreators.AttributeBased
                         visitedList.Add(reflectedChild);
                     }
                 }
-            }
-            return stringGraph;
+            }   
         }
     }
 }
