@@ -122,6 +122,43 @@ Example
             Logger.Debug("Exiting.....");
       }
 
+Example of integration with [log4net][http://logging.apache.org/log4net/]
+
+      internal static class Logger
+      {
+        private static readonly ILog _log = LogManager.GetLogger("DemoLog");
+      
+        public static void Info(string message)
+        {
+            _log.Info(message);
+        }
+      
+        public static void Warn(string message)
+        {
+            _log.Warn(message);
+        }
+      
+        public static void Error(string message)
+        {
+            _log.Error(message);
+        }
+      
+        public static void Debug(string message)
+        {
+            _log.Debug(message);
+        }
+      
+        public static void VisualizeObject(object o)
+        {
+            if (_log.Logger.IsEnabledFor(Level.Verbose))
+            {
+                var visualizer = Visualizer.Svg;
+      
+                var objVisualization = visualizer.Visualize(o);
+                _log.Debug(objVisualization);
+            }
+        }
+      }
 
 Compiling the project:
 `msbuild build.proj`
