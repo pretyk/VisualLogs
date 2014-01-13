@@ -122,7 +122,7 @@ Example
             Logger.Debug("Exiting.....");
       }
 
-Example of integration with [log4net][http://logging.apache.org/log4net/]
+Example of integration with [log4net](http://logging.apache.org/log4net/)
 
       internal static class Logger
       {
