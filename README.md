@@ -6,31 +6,14 @@ VisualLogs is a tool for Visualizing object states into a log system.
 * The logs are written as regular logs and the object states in SVG
 * In order to view the objects the log file must be open in a browser that supports svg (such as Chrome).
 
+How to use
+* Use the following attributes in your class your want to visualize
+**      VisualLogAttribute - can be put on a field or property we want to visualize
+**      VisualLogDescriptionAttribute - can be put on a field or property or method and marks the description of the object to be show
 
 Example
 
 
-
-    class Program
-      {
-          private static void Main(string[] args)
-          {
-              Logger.Info("Some info log");
-              Logger.Info("Creating a store");
-              var store = new Store();
-              Logger.Debug("Adding orders");
-              store.AddOrder(new Order(new Customer("Walter"),new Book("Harry Potter"),2));
-              store.AddOrder(new Order(new Customer("Gustavo"),new Book("Romeo and Juliet"),3));
-              Logger.VisualizeObject(store);
-              Logger.Debug("Adding more orders");
-              store.AddOrder(new Order(new Customer("Mike"), new Phone("LG"), 4));
-              store.AddOrder(new Order(new Customer("Jesse"),new Phone("Samsung"),5));
-              store.AddOrder(new Order(new Customer("Soul"),new Book("Don Quixote"),6));
-              Logger.Debug("Finishing adding orders");
-              Logger.VisualizeObject(store);
-              Logger.Debug("Exiting.....");
-          }
-      }
       public class Store
       {
           private List<Customer> _customers = new List<Customer>();
@@ -121,3 +104,23 @@ Example
           }
       }
   }
+  class Program
+      {
+          private static void Main(string[] args)
+          {
+              Logger.Info("Some info log");
+              Logger.Info("Creating a store");
+              var store = new Store();
+              Logger.Debug("Adding orders");
+              store.AddOrder(new Order(new Customer("Walter"),new Book("Harry Potter"),2));
+              store.AddOrder(new Order(new Customer("Gustavo"),new Book("Romeo and Juliet"),3));
+              Logger.VisualizeObject(store);
+              Logger.Debug("Adding more orders");
+              store.AddOrder(new Order(new Customer("Mike"), new Phone("LG"), 4));
+              store.AddOrder(new Order(new Customer("Jesse"),new Phone("Samsung"),5));
+              store.AddOrder(new Order(new Customer("Soul"),new Book("Don Quixote"),6));
+              Logger.Debug("Finishing adding orders");
+              Logger.VisualizeObject(store);
+              Logger.Debug("Exiting.....");
+          }
+      }
