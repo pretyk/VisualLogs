@@ -103,27 +103,27 @@ Example
               
           }
       }
-  }
-  class Program
-      {
-          private static void Main(string[] args)
-          {
-              Logger.Info("Some info log");
-              Logger.Info("Creating a store");
-              var store = new Store();
-              Logger.Debug("Adding orders");
-              store.AddOrder(new Order(new Customer("Walter"),new Book("Harry Potter"),2));
-              store.AddOrder(new Order(new Customer("Gustavo"),new Book("Romeo and Juliet"),3));
-              Logger.VisualizeObject(store);
-              Logger.Debug("Adding more orders");
-              store.AddOrder(new Order(new Customer("Mike"), new Phone("LG"), 4));
-              store.AddOrder(new Order(new Customer("Jesse"),new Phone("Samsung"),5));
-              store.AddOrder(new Order(new Customer("Soul"),new Book("Don Quixote"),6));
-              Logger.Debug("Finishing adding orders");
-              Logger.VisualizeObject(store);
-              Logger.Debug("Exiting.....");
-          }
-      }
+        }
+        class Program
+            {
+                private static void Main(string[] args)
+                {
+                    Logger.Info("Some info log");
+                    Logger.Info("Creating a store");
+                    var store = new Store();
+                    Logger.Debug("Adding orders");
+                    store.AddOrder(new Order(new Customer("Walter"),new Book("Harry Potter"),2));
+                    store.AddOrder(new Order(new Customer("Gustavo"),new Book("Romeo and Juliet"),3));
+                    Logger.VisualizeObject(store);
+                    Logger.Debug("Adding more orders");
+                    store.AddOrder(new Order(new Customer("Mike"), new Phone("LG"), 4));
+                    store.AddOrder(new Order(new Customer("Jesse"),new Phone("Samsung"),5));
+                    store.AddOrder(new Order(new Customer("Soul"),new Book("Don Quixote"),6));
+                    Logger.Debug("Finishing adding orders");
+                    Logger.VisualizeObject(store);
+                    Logger.Debug("Exiting.....");
+                }
+            }
 
 Compiling the project:
 `msbuild build.proj`
