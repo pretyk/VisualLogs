@@ -11,7 +11,7 @@ How to use
 * `VisualLogAttribute` can be put on a field or property we want to visualize
 * `VisualLogDescriptionAttribute`can be put on a field or property or method and marks the description of the object to be shown
 
-Example
+The following example creates [this log file](https://rawgithub.com/pablito900/VisualLogs/master/ClientExample/examplelog.html) (best viewed with chrome) 
 
 
       public class Store
@@ -121,6 +121,10 @@ Example
             Logger.VisualizeObject(store);
             Logger.Debug("Exiting.....");
       }
+
+this is how it looks
+
+![Log Example](https://raw.github.com/pablito900/VisualLogs/master/ClientExample/example1.png)
 
 Example of integration with [log4net](http://logging.apache.org/log4net/)
 
