@@ -73,8 +73,9 @@ namespace VisualLog.GraphCreators.AttributeBased
 
 
                     object description = GetObjectFromType(descriptionMember, _object);
-                    _description = description == null ? _object.ToString() : description.ToString();
-
+                    _description = description == null
+                                       ? _object.ToString()
+                                       : string.Format("{0}({1})", _object.GetType().Name, description);
                 }
 
                 return _description;

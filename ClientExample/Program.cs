@@ -9,10 +9,7 @@ namespace ClientExample
     {
         private static void Main(string[] args)
         {
-            
             Logger.Info("Some info log");
-
-
             Logger.Info("Creating a store");
             var store = new Store();
             Logger.Debug("Adding orders");
@@ -26,11 +23,6 @@ namespace ClientExample
             Logger.Debug("Finishing adding orders");
             Logger.VisualizeObject(store);
             Logger.Debug("Exiting.....");
-
-          //  StreamWriter sw = new StreamWriter("test.html");
-           // sw.Write(res);
-            //sw.Flush();
-            //sw.Close();
         }
     }
     public class Store
