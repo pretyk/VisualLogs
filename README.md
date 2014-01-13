@@ -8,8 +8,10 @@ VisualLogs is a tool for Visualizing object states into a log system.
 
 How to use
 * Use the following attributes in your class your want to visualize
-**      VisualLogAttribute - can be put on a field or property we want to visualize
-**      VisualLogDescriptionAttribute - can be put on a field or property or method and marks the description of the object to be show
+            VisualLogAttribute 
+can be put on a field or property we want to visualize
+            VisualLogDescriptionAttribute
+can be put on a field or property or method and marks the description of the object to be show
 
 Example
 
