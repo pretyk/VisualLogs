@@ -1,7 +1,7 @@
 VisualLogs (for .NET)
 ==========
 
-VisualLogs is a tool for Visualizing object states into a log system.
+VisualLogs is an Aspect Oriented library tool that allows to extend your logging framework by visualizing objects.
 
 * The logs are written as regular logs and the object states in SVG
 * In order to view the objects the log file must be open in a browser that supports svg (such as Chrome).
