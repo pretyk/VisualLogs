@@ -13,7 +13,7 @@ How to use
 
 The following example creates [this log file](https://rawgithub.com/pablito900/VisualLogs/master/ClientExample/examplelog.html) (best viewed with chrome) 
 
-
+```csharp
       public class Store
       {
           private List<Customer> _customers = new List<Customer>();
