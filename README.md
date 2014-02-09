@@ -121,12 +121,15 @@ The following example creates [this log file](https://rawgithub.com/pablito900/V
             Logger.VisualizeObject(store);
             Logger.Debug("Exiting.....");
       }
+```
 
 this is how it looks
 
 ![Log Example](https://raw.github.com/pablito900/VisualLogs/master/ClientExample/example1.png)
 
 Example of integration with [log4net](http://logging.apache.org/log4net/)
+
+```csharp
 
       internal static class Logger
       {
@@ -163,6 +166,7 @@ Example of integration with [log4net](http://logging.apache.org/log4net/)
             }
         }
       }
+```
 
 Compiling the project:
 `msbuild build.proj`
